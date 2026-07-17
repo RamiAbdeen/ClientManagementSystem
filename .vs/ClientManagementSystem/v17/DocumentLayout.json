@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\MCC\\OneDrive\\Desktop\\ClientManagementSystem\\ClientManagementSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B85268FE-0ECB-4A56-8393-53A3A0B31FB4}|ClientManagementSystem\\ClientManagementSystem.vcxproj|C:\\Users\\MCC\\OneDrive\\Desktop\\ClientManagementSystem\\ClientManagementSystem\\ClientManagementSystem\\ClientManagementSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B85268FE-0ECB-4A56-8393-53A3A0B31FB4}|ClientManagementSystem\\ClientManagementSystem.vcxproj|solutionrelative:ClientManagementSystem\\ClientManagementSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ClientManagementSystem.cpp",
+              "DocumentMoniker": "C:\\Users\\MCC\\OneDrive\\Desktop\\ClientManagementSystem\\ClientManagementSystem\\ClientManagementSystem\\ClientManagementSystem.cpp",
+              "RelativeDocumentMoniker": "ClientManagementSystem\\ClientManagementSystem.cpp",
+              "ToolTip": "C:\\Users\\MCC\\OneDrive\\Desktop\\ClientManagementSystem\\ClientManagementSystem\\ClientManagementSystem\\ClientManagementSystem.cpp",
+              "RelativeToolTip": "ClientManagementSystem\\ClientManagementSystem.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-17T18:10:21.809Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

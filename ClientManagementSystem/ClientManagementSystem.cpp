@@ -44,16 +44,14 @@ stClientInfo ReadClientInfo(vector <stClientInfo> vClient)
 
     cout << "Account Number: ";
     cin >> Client.AccountNumber;
-    if (!CheckIfFileIsEmpty())
+    
+    for (stClientInfo& C : vClient)
     {
-        for (stClientInfo& C : vClient)
+        if (C.AccountNumber == Client.AccountNumber)
         {
-            if (C.AccountNumber == Client.AccountNumber)
-            {
-                cout << "This number is not valid!\n";
-                cout << "Enter another one: ";
-                cin >> Client.AccountNumber;
-            }
+            cout << "This number is not valid!\n";
+            cout << "Enter another one: ";
+            cin >> Client.AccountNumber;
         }
     }
 
@@ -81,18 +79,43 @@ stClientInfo ReadClientInfo(vector <stClientInfo> vClient)
     return Client;
 }
 
-void FillVectorWithClients(stClientInfo Client)
+vector <stClientInfo> FillVectorWithClients()
 {
     vector <stClientInfo> vClient;
     char AddMore = 'Y';
     
     do
     {
-        vClient.push_back(Client);
+        vClient.push_back(ReadClientInfo(vClient));
         cout << "\nDo you want to add more? Y/N\n";
         cin >> AddMore;
 
     } while (AddMore == 'Y' || AddMore == 'y');
+
+    return vClient;
+}
+
+void FillTxtFileWithClients(vector <stClientInfo> vClient, string Separator = "#//#")
+{
+    fstream MyFile;
+
+    MyFile.open("Clients.txt", ios::out);
+
+    if (MyFile.is_open())
+    {
+        for (stClientInfo& C : vClient)
+        {
+            MyFile << C.AccountNumber << Separator;
+            MyFile << C.FirstName << Separator;
+            MyFile << C.LastName << Separator;
+            MyFile << C.Phone << Separator;
+            MyFile << C.Email << Separator;
+            MyFile << C.Address << Separator;
+            MyFile << C.Country << Separator;
+            MyFile << C.Balance << endl;
+        }
+        MyFile.close();
+    }
 }
 
 void PrintClientsInfo()
@@ -127,7 +150,7 @@ void CreateTxtFile()
 
 int main()
 {
-    DisplayClientsTable();
+    FillTxtFileWithClients(FillVectorWithClients());
 
     return 0;
 }

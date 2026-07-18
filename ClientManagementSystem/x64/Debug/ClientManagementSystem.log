@@ -1,2 +1,3 @@
 ﻿  ClientManagementSystem.cpp
+C:\Users\MCC\OneDrive\Desktop\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem.cpp(39,1): warning C4715: 'CheckIfFileIsEmpty': not all control paths return a value
   ClientManagementSystem.vcxproj -> C:\Users\MCC\OneDrive\Desktop\ClientManagementSystem\ClientManagementSystem\x64\Debug\ClientManagementSystem.exe

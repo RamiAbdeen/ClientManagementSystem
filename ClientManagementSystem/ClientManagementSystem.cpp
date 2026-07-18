@@ -38,6 +38,22 @@ bool CheckIfFileIsEmpty()
     }
 }
 
+void DeleteTxtFileContent()
+{
+    fstream MyFile;
+
+    string Line;
+
+    MyFile.open("Clients.txt", ios::out);
+
+    if (MyFile.is_open())
+    {
+        Line = "";
+
+        MyFile.close();
+    }
+}
+
 stClientInfo ReadClientInfo(vector <stClientInfo> vClient)
 {
     stClientInfo Client;
@@ -150,7 +166,7 @@ void CreateTxtFile()
 
 int main()
 {
-    FillTxtFileWithClients(FillVectorWithClients());
+    DisplayClientsTable();
 
     return 0;
 }

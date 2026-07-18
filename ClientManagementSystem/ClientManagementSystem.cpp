@@ -17,12 +17,34 @@ struct stClientInfo
     double Balance;
 };
 
+void CheckIfFileIsEmpty()
+{
+    fstream MyFile;
+
+    string Line;
+
+    MyFile.open("Clients.txt", ios::in);
+
+    if (MyFile.is_open())
+    {
+        if (Line == "")
+            cout << "The file is empty :-)\n";
+
+        MyFile.close();
+    }
+}
+
+void PrintClientsInfo()
+{
+    CheckIfFileIsEmpty();
+}
+
 void DisplayClientsTable()
 {
     cout << "-----------------------------------------------------------------------------------------------------------\n";
     cout << "|AccNo.|FName       |LName        |Phone          |Email               |Address   |Country      |Balance  |\n";
     cout << "-----------------------------------------------------------------------------------------------------------\n";
-    //PrintClientsInfo();
+    PrintClientsInfo();
     cout << "-----------------------------------------------------------------------------------------------------------\n";
 }
 
@@ -42,7 +64,7 @@ void CreateTxtFile()
 
 int main()
 {
-    
+    DisplayClientsTable();
 
     return 0;
 }

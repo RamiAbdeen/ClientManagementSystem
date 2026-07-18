@@ -69,6 +69,20 @@ stClientInfo ReadClientInfo()
     return Client;
 }
 
+void FillVectorWithClients(stClientInfo Client)
+{
+    vector <stClientInfo> vClient;
+    char AddMore = 'Y';
+    
+    do
+    {
+        vClient.push_back(Client);
+        cout << "\nDo you want to add more? Y/N\n";
+        cin >> AddMore;
+
+    } while (AddMore == 'Y' || AddMore == 'y');
+}
+
 void PrintClientsInfo()
 {
     if(CheckIfFileIsEmpty())

@@ -17,7 +17,7 @@ struct stClientInfo
     double Balance;
 };
 
-void CheckIfFileIsEmpty()
+bool CheckIfFileIsEmpty()
 {
     fstream MyFile;
 
@@ -28,15 +28,28 @@ void CheckIfFileIsEmpty()
     if (MyFile.is_open())
     {
         if (Line == "")
-            cout << "The file is empty :-)\n";
+        {
+            MyFile.close();
+            return true;
+        }
 
         MyFile.close();
+        return false;
     }
+}
+
+stClientInfo ReadClientInfo()
+{
+    stClientInfo Client;
+
+
 }
 
 void PrintClientsInfo()
 {
-    CheckIfFileIsEmpty();
+    if(CheckIfFileIsEmpty())
+        cout << "The file is empty :-)\n";
+
 }
 
 void DisplayClientsTable()

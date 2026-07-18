@@ -42,7 +42,31 @@ stClientInfo ReadClientInfo()
 {
     stClientInfo Client;
 
+    cout << "Account Number: ";
+    cin >> Client.AccountNumber;
 
+    cout << "First Name    : ";
+    cin >> Client.FirstName;
+
+    cout << "Last Name     : ";
+    cin >> Client.LastName;
+
+    cout << "Phone         : ";
+    cin >> Client.Phone;
+
+    cout << "Email         : ";
+    cin >> Client.Email;
+
+    cout << "Address       : ";
+    cin >> Client.Address;
+
+    cout << "Country       : ";
+    cin >> Client.Country;
+    
+    cout << "Balance       : ";
+    cin >> Client.Balance;
+
+    return Client;
 }
 
 void PrintClientsInfo()

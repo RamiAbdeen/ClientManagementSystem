@@ -38,12 +38,24 @@ bool CheckIfFileIsEmpty()
     }
 }
 
-stClientInfo ReadClientInfo()
+stClientInfo ReadClientInfo(vector <stClientInfo> vClient)
 {
     stClientInfo Client;
 
     cout << "Account Number: ";
     cin >> Client.AccountNumber;
+    if (!CheckIfFileIsEmpty())
+    {
+        for (stClientInfo& C : vClient)
+        {
+            if (C.AccountNumber == Client.AccountNumber)
+            {
+                cout << "This number is not valid!\n";
+                cout << "Enter another one: ";
+                cin >> Client.AccountNumber;
+            }
+        }
+    }
 
     cout << "First Name    : ";
     cin >> Client.FirstName;

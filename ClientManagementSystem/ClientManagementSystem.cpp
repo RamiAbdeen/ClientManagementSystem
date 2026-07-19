@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -27,7 +28,7 @@ bool CheckIfFileIsEmpty()
 
     if (MyFile.is_open())
     {
-        if (Line == "")
+        if (!getline(MyFile, Line))
         {
             MyFile.close();
             return true;
@@ -222,11 +223,23 @@ void FillTxtFileWithClients(vector <stClientInfo> vClient, string Separator = "#
     }
 }
 
-void PrintClientsInfo()
+void PrintClientsInfo(vector <stClientInfo> vClient)
 {
-    if(CheckIfFileIsEmpty())
+    if (CheckIfFileIsEmpty())
         cout << "The file is empty :-)\n";
 
+    for (stClientInfo& C : vClient)
+    {
+        cout << "|" << setw(6) << left << C.AccountNumber;
+        cout << "|" << setw(12) << left << C.FirstName;
+        cout << "|" << setw(13) << left << C.LastName;
+        cout << "|" << setw(15) << left << C.Phone;
+        cout << "|" << setw(20) << left << C.Email;
+        cout << "|" << setw(10) << left << C.Address;
+        cout << "|" << setw(13) << left << C.Country;
+        cout << "|" << setw(9) << left << C.Balance;
+        cout << "|" << endl;
+    }
 }
 
 void DisplayClientsTable()
@@ -234,7 +247,7 @@ void DisplayClientsTable()
     cout << "-----------------------------------------------------------------------------------------------------------\n";
     cout << "|AccNo.|FName       |LName        |Phone          |Email               |Address   |Country      |Balance  |\n";
     cout << "-----------------------------------------------------------------------------------------------------------\n";
-    PrintClientsInfo();
+    PrintClientsInfo(FillVectorWithClientsFromTxtFile());
     cout << "-----------------------------------------------------------------------------------------------------------\n";
 }
 
@@ -254,7 +267,7 @@ void CreateTxtFile()
 
 int main()
 {
-
+    DisplayClientsTable();
 
     return 0;
 }

@@ -95,18 +95,106 @@ stClientInfo ReadClientInfo(vector <stClientInfo> vClient)
     return Client;
 }
 
+vector <stClientInfo> FillVectorWithClientsFromTxtFile();
+
+void AddASingleClientToTheTxtFile(stClientInfo Client, string Separator = "#//#")
+{
+    fstream MyFile;
+
+    MyFile.open("Clients.txt", ios::out | ios::app);
+
+    if (MyFile.is_open())
+    {
+        MyFile << Client.AccountNumber << Separator;
+        MyFile << Client.FirstName << Separator;
+        MyFile << Client.LastName << Separator;
+        MyFile << Client.Phone << Separator;
+        MyFile << Client.Email << Separator;
+        MyFile << Client.Address << Separator;
+        MyFile << Client.Country << Separator;
+        MyFile << Client.Balance << endl;
+
+        MyFile.close();
+    }
+}
+
 vector <stClientInfo> FillVectorWithClients()
 {
-    vector <stClientInfo> vClient;
+    vector <stClientInfo> vClient = FillVectorWithClientsFromTxtFile();
     char AddMore = 'Y';
     
     do
     {
         vClient.push_back(ReadClientInfo(vClient));
+        AddASingleClientToTheTxtFile(vClient.back());
         cout << "\nDo you want to add more? Y/N\n";
         cin >> AddMore;
 
     } while (AddMore == 'Y' || AddMore == 'y');
+
+    return vClient;
+}
+
+stClientInfo ReadClientInfoFromTxtFile(vector <string> vClient)
+{
+    stClientInfo Client;
+
+    Client.AccountNumber = vClient.at(0);
+    Client.FirstName = vClient.at(1);
+    Client.LastName = vClient.at(2);
+    Client.Phone = vClient.at(3);
+    Client.Email = vClient.at(4);
+    Client.Address = vClient.at(5);
+    Client.Country = vClient.at(6);
+    Client.Balance = stod(vClient.at(7));
+
+    return Client;
+}
+
+vector <string> SplitLineRecord(string LineRecord, string Separator = "#//#")
+{
+    vector <string> vClient;
+
+    short pos = 0;
+    string sWord;
+
+    while ((pos = LineRecord.find(Separator)) != string::npos)
+    {
+        sWord = LineRecord.substr(0, pos);
+        if (sWord != "")
+        {
+            vClient.push_back(sWord);
+        }
+        LineRecord.erase(0, pos + Separator.length());
+    }
+    if (LineRecord != "")
+    {
+        vClient.push_back(LineRecord);
+    }
+
+    return vClient;
+}
+
+vector <stClientInfo> FillVectorWithClientsFromTxtFile()
+{
+    vector <stClientInfo> vClient;
+
+    fstream MyFile;
+
+    MyFile.open("Clients.txt", ios::in);
+
+    stClientInfo Client;
+
+    string Line;
+
+    if (MyFile.is_open())
+    {
+        while (getline(MyFile, Line))
+        {
+            vClient.push_back(ReadClientInfoFromTxtFile(SplitLineRecord(Line)));
+        }
+        MyFile.close();
+    }
 
     return vClient;
 }
@@ -166,7 +254,7 @@ void CreateTxtFile()
 
 int main()
 {
-    DisplayClientsTable();
+
 
     return 0;
 }

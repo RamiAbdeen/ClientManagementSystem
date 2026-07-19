@@ -5,6 +5,9 @@
     {
       "AbsoluteMoniker": "D:0:0:{B85268FE-0ECB-4A56-8393-53A3A0B31FB4}|ClientManagementSystem\\ClientManagementSystem.vcxproj|C:\\Users\\MCC\\OneDrive\\Desktop\\ClientManagementSystem\\ClientManagementSystem\\ClientManagementSystem\\ClientManagementSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B85268FE-0ECB-4A56-8393-53A3A0B31FB4}|ClientManagementSystem\\ClientManagementSystem.vcxproj|solutionrelative:ClientManagementSystem\\ClientManagementSystem.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\string||{3B902123-F8A7-4915-9F01-361F908088D0}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +17,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "string",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\string",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\string",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\string",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\include\\string",
+              "ViewState": "AgIAANYAAAAAAAAAAAArwOMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-07-19T18:24:38.072Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +39,7 @@
               "RelativeDocumentMoniker": "ClientManagementSystem\\ClientManagementSystem.cpp",
               "ToolTip": "C:\\Users\\MCC\\OneDrive\\Desktop\\ClientManagementSystem\\ClientManagementSystem\\ClientManagementSystem\\ClientManagementSystem.cpp",
               "RelativeToolTip": "ClientManagementSystem\\ClientManagementSystem.cpp",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAACgAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAUwOMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-07-17T18:10:21.809Z",
               "EditorCaption": ""

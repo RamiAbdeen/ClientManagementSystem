@@ -16,9 +16,10 @@ struct stClientInfo
     string Address;
     string Country;
     double Balance;
+    bool MarkForDelete = false;
 };
 
-enum enOperation { ShowClients = 1, AddNewClient = 2, Exit = 6};
+enum enOperation { ShowClients = 1, AddNewClient = 2, DeleteClient = 3, Exit = 6};
 
 bool CheckIfFileIsEmpty()
 {
@@ -273,6 +274,40 @@ void CreateTxtFile()
     }
 }
 
+void RemoveClient()
+{
+    vector <stClientInfo> vClient = FillVectorWithClientsFromTxtFile();
+    vector <stClientInfo> vMClient;
+    string AccNo;
+    bool Found = false;
+
+    cout << "Enter Account Number: ";
+    cin >> AccNo;
+
+    for (stClientInfo& C : vClient)
+    {
+        if (AccNo == C.AccountNumber)
+        {
+            Found = true;
+            C.MarkForDelete = true;
+        }
+    }
+    if (Found == false)
+    {
+        cout << "This Account does not exist! :=>)\n";
+    }
+
+    for (stClientInfo& MC : vClient)
+    {
+        if (MC.MarkForDelete == false)
+        {
+            vMClient.push_back(MC);
+        }
+    }
+
+    FillTxtFileWithClients(vMClient);
+}
+
 void ApplyOperation(enOperation Op)
 {
     switch (Op)
@@ -288,6 +323,13 @@ void ApplyOperation(enOperation Op)
     {
         system("cls");
         FillVectorWithClients();
+        system("pause");
+        break;
+    }
+    case enOperation::DeleteClient:
+    {
+        system("cls");
+        RemoveClient();
         system("pause");
         break;
     }
@@ -327,6 +369,7 @@ void SelectOperationFromMainMenu()
         cout << "---------------------------------------------\n";
         cout << "[1] Display Clients Table.\n";
         cout << "[2] Add New Client.\n";
+        cout << "[3] Delete Client.\n";
         cout << "---------------------------------------------\n";
         YourSelection = ReadOption();
         ApplyOperation((enOperation)YourSelection);

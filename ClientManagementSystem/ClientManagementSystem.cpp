@@ -18,6 +18,8 @@ struct stClientInfo
     double Balance;
 };
 
+enum enOperation { ShowClients = 1, AddNewClient = 2 };
+
 bool CheckIfFileIsEmpty()
 {
     fstream MyFile;
@@ -59,18 +61,22 @@ stClientInfo ReadClientInfo(vector <stClientInfo> vClient)
 {
     stClientInfo Client;
 
-    cout << "Account Number: ";
-    cin >> Client.AccountNumber;
-    
-    for (stClientInfo& C : vClient)
+    bool IsAccountExist = false;
+    do
     {
-        if (C.AccountNumber == Client.AccountNumber)
+        cout << "Account Number: ";
+        cin >> Client.AccountNumber;
+
+        for (stClientInfo& C : vClient)
         {
-            cout << "This number is not valid!\n";
-            cout << "Enter another one: ";
-            cin >> Client.AccountNumber;
+            if (C.AccountNumber == Client.AccountNumber)
+            {
+                IsAccountExist = true;
+                cout << "This number is not valid!\n";
+                break;
+            }
         }
-    }
+    } while (IsAccountExist);
 
     cout << "First Name    : ";
     cin >> Client.FirstName;
@@ -263,6 +269,40 @@ void CreateTxtFile()
 
         MyFile.close();
     }
+}
+
+void ApplyOperation(enOperation Op)
+{
+    switch (Op)
+    {
+    case enOperation::ShowClients:
+    {
+        DisplayClientsTable();
+        system("pause");
+        break;
+    }
+    case enOperation::AddNewClient:
+    {
+        FillVectorWithClientsFromTxtFile();
+        system("pause");
+        break;
+    }
+    default:
+    {
+        cout << "Select a valid option :-v||\n";
+    }
+    }
+}
+
+void SelectOperationFromMainMenu()
+{
+    cout << "---------------------------------------------\n";
+    cout << "\t\tMain Menu\n";
+    cout << "---------------------------------------------\n";
+    cout << "[1] Display Clients Table.\n";
+    cout << "[2] Add New Client.\n";
+    cout << "---------------------------------------------\n";
+    ApplyOperation((enOperation)ReadOption());
 }
 
 int main()

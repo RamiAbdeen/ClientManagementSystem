@@ -64,6 +64,8 @@ stClientInfo ReadClientInfo(vector <stClientInfo> vClient)
     bool IsAccountExist = false;
     do
     {
+        IsAccountExist = false;
+
         cout << "Account Number: ";
         cin >> Client.AccountNumber;
 
@@ -283,7 +285,7 @@ void ApplyOperation(enOperation Op)
     }
     case enOperation::AddNewClient:
     {
-        FillVectorWithClientsFromTxtFile();
+        FillVectorWithClients();
         system("pause");
         break;
     }
@@ -292,6 +294,24 @@ void ApplyOperation(enOperation Op)
         cout << "Select a valid option :-v||\n";
     }
     }
+}
+
+short ReadOption()
+{
+    short Number;
+    cout << "Please enter a Number? ";
+    cin >> Number;
+
+    while (cin.fail())
+    {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        cout << "Invalid Number, Enter a valid one:" << endl;
+        cin >> Number;
+    }
+
+    return Number;
 }
 
 void SelectOperationFromMainMenu()
@@ -305,9 +325,10 @@ void SelectOperationFromMainMenu()
     ApplyOperation((enOperation)ReadOption());
 }
 
+
+
 int main()
 {
-    DisplayClientsTable();
 
     return 0;
 }

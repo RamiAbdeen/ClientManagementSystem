@@ -18,7 +18,7 @@ struct stClientInfo
     double Balance;
 };
 
-enum enOperation { ShowClients = 1, AddNewClient = 2 };
+enum enOperation { ShowClients = 1, AddNewClient = 2, Exit = 6};
 
 bool CheckIfFileIsEmpty()
 {
@@ -279,12 +279,14 @@ void ApplyOperation(enOperation Op)
     {
     case enOperation::ShowClients:
     {
+        system("cls");
         DisplayClientsTable();
         system("pause");
         break;
     }
     case enOperation::AddNewClient:
     {
+        system("cls");
         FillVectorWithClients();
         system("pause");
         break;
@@ -316,19 +318,24 @@ short ReadOption()
 
 void SelectOperationFromMainMenu()
 {
-    cout << "---------------------------------------------\n";
-    cout << "\t\tMain Menu\n";
-    cout << "---------------------------------------------\n";
-    cout << "[1] Display Clients Table.\n";
-    cout << "[2] Add New Client.\n";
-    cout << "---------------------------------------------\n";
-    ApplyOperation((enOperation)ReadOption());
+    short YourSelection;
+    do
+    {
+        system("cls");
+        cout << "---------------------------------------------\n";
+        cout << "\t\tMain Menu\n";
+        cout << "---------------------------------------------\n";
+        cout << "[1] Display Clients Table.\n";
+        cout << "[2] Add New Client.\n";
+        cout << "---------------------------------------------\n";
+        YourSelection = ReadOption();
+        ApplyOperation((enOperation)YourSelection);
+    } while (YourSelection != 6);
 }
-
-
 
 int main()
 {
+    SelectOperationFromMainMenu();
 
     return 0;
 }

@@ -477,6 +477,20 @@ void WithdrawAmount()
     FillTxtFileWithClients(vClient);
 }
 
+void DisplayBalncesTabel(vector <stClientInfo> vClient)
+{
+    if (CheckIfFileIsEmpty())
+        cout << "The file is empty :-)\n";
+
+    for (stClientInfo& C : vClient)
+    {
+        cout << "|" << setw(15) << left << C.AccountNumber;
+        cout << "|" << setw(22) << left << C.FirstName + " " + C.LastName;
+        cout << "|" << setw(14) << left << C.Balance;
+        cout << "|" << endl;
+    }
+}
+
 void DisplayTotalBalancesTable()
 {
     cout << "-------------------------------------------------------\n";

@@ -19,7 +19,9 @@ struct stClientInfo
     bool MarkForDelete = false;
 };
 
-enum enOperation { ShowClients = 1, AddNewClient = 2, DeleteClient = 3, UpdateClient = 4, FindClient = 5, Exit = 6};
+enum enOperation { ShowClients = 1, AddNewClient = 2, DeleteClient = 3, UpdateClient = 4, FindClient = 5, Transaction = 6, Exit = 7};
+
+enum enTransaction { Deposit = 1, Withdrow = 2, TotalBalances = 3, MainMenu = 4 };
 
 bool CheckIfFileIsEmpty()
 {
@@ -403,6 +405,26 @@ void DisplayExitScreen()
     cout << "-------------------------------------\n";
 }
 
+short ReadOption();
+
+void DisplayTransactions()
+{
+    short YourChoice;
+    do
+    {
+        cout << "---------------------------------------------\n";
+        cout << "\t\tTransactions\n";
+        cout << "---------------------------------------------\n";
+        cout << "[1] Diposit.\n";
+        cout << "[2] Withdrow.\n";
+        cout << "[3] Total Balances.\n";
+        cout << "[4] Main Menu.\n";
+        cout << "---------------------------------------------\n";
+        YourChoice = ReadOption();
+        PerformTransaction((enTransaction)YourChoice);
+    } while (YourChoice != 4);
+}
+
 void ApplyOperation(enOperation Op)
 {
     switch (Op)
@@ -439,6 +461,13 @@ void ApplyOperation(enOperation Op)
     {
         system("cls");
         DisplayClientCard();
+        system("pause");
+        break;
+    }
+    case enOperation::Transaction:
+    {
+        system("cls");
+        DisplayTransactions();
         system("pause");
         break;
     }
@@ -488,7 +517,8 @@ void SelectOperationFromMainMenu()
         cout << "[3] Delete Client.\n";
         cout << "[4] Update Client.\n";
         cout << "[5] Find Client.\n";
-        cout << "[6] Exit.\n";
+        cout << "[6] Transaction.\n";
+        cout << "[7] Exit.\n";
         cout << "---------------------------------------------\n";
         YourSelection = ReadOption();
         ApplyOperation((enOperation)YourSelection);

@@ -477,6 +477,15 @@ void WithdrawAmount()
     FillTxtFileWithClients(vClient);
 }
 
+void DisplayTotalBalancesTable()
+{
+    cout << "-------------------------------------------------------\n";
+    cout << "|Account Number |Full Name             |Balance       |\n";
+    cout << "-------------------------------------------------------\n";
+    DisplayBalncesTabel(FillVectorWithClients());
+    cout << "-------------------------------------------------------\n";
+}
+
 short ReadOption();
 void SelectOperationFromMainMenu();
 

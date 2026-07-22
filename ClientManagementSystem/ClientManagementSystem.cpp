@@ -19,7 +19,7 @@ struct stClientInfo
     bool MarkForDelete = false;
 };
 
-enum enOperation { ShowClients = 1, AddNewClient = 2, DeleteClient = 3, UpdateClient = 4, Exit = 6};
+enum enOperation { ShowClients = 1, AddNewClient = 2, DeleteClient = 3, UpdateClient = 4, FindClient = 5, Exit = 6};
 
 bool CheckIfFileIsEmpty()
 {
@@ -290,11 +290,13 @@ void RemoveClient()
         {
             Found = true;
             C.MarkForDelete = true;
+            break;
         }
     }
     if (Found == false)
     {
         cout << "This Account does not exist! :=>)\n";
+        return;
     }
 
     for (stClientInfo& MC : vClient)
@@ -359,6 +361,48 @@ void ModifyClient()
     FillTxtFileWithClients(vClient);
 }
 
+void DisplayClientCard()
+{
+    vector <stClientInfo> vClient = FillVectorWithClientsFromTxtFile();
+
+    string AccNo;
+    bool Found = false;
+
+    cout << "Enter Account Number: ";
+    cin >> AccNo;
+
+    for (stClientInfo& C : vClient)
+    {
+        if (AccNo == C.AccountNumber)
+        {
+            Found = true;
+
+            cout << "-------------------------------------\n";
+            cout << "Account Number: " << C.AccountNumber << endl;
+            cout << "Full Name: " << C.FirstName << " " << C.LastName << endl;
+            cout << "Phone: " << C.Phone << endl;
+            cout << "Email: " << C.Email << endl;
+            cout << "Address: " << C.Address << endl;
+            cout << "Country: " << C.Country << endl;
+            cout << "Balance: " << C.Balance << endl;
+            cout << "-------------------------------------\n";
+
+            break;
+        }
+    }
+    if (Found == false)
+    {
+        cout << "This Account does not exist! :=>)\n";
+    }
+}
+
+void DisplayExitScreen()
+{
+    cout << "-------------------------------------\n";
+    cout << "\tProgram Ends Here...\n";
+    cout << "-------------------------------------\n";
+}
+
 void ApplyOperation(enOperation Op)
 {
     switch (Op)
@@ -388,6 +432,20 @@ void ApplyOperation(enOperation Op)
     {
         system("cls");
         ModifyClient();
+        system("pause");
+        break;
+    }
+    case enOperation::FindClient:
+    {
+        system("cls");
+        DisplayClientCard();
+        system("pause");
+        break;
+    }
+    case enOperation::Exit:
+    {
+        system("cls");
+        DisplayExitScreen();
         system("pause");
         break;
     }
@@ -429,6 +487,8 @@ void SelectOperationFromMainMenu()
         cout << "[2] Add New Client.\n";
         cout << "[3] Delete Client.\n";
         cout << "[4] Update Client.\n";
+        cout << "[5] Find Client.\n";
+        cout << "[6] Exit.\n";
         cout << "---------------------------------------------\n";
         YourSelection = ReadOption();
         ApplyOperation((enOperation)YourSelection);

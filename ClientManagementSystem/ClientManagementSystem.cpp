@@ -477,6 +477,20 @@ void WithdrawAmount()
     FillTxtFileWithClients(vClient);
 }
 
+double CalculateTotalBalances()
+{
+    double TotalBalances = 0;
+
+    vector <stClientInfo> vClient = FillVectorWithClientsFromTxtFile();
+
+    for (stClientInfo C : vClient)
+    {
+        TotalBalances += C.Balance;
+    }
+
+    return TotalBalances;
+}
+
 void DisplayBalncesTabel(vector <stClientInfo> vClient)
 {
     if (CheckIfFileIsEmpty())
@@ -484,9 +498,9 @@ void DisplayBalncesTabel(vector <stClientInfo> vClient)
 
     for (stClientInfo& C : vClient)
     {
-        cout << "|" << setw(15) << left << C.AccountNumber;
-        cout << "|" << setw(22) << left << C.FirstName + " " + C.LastName;
-        cout << "|" << setw(14) << left << C.Balance;
+        cout << "|" << left << setw(15) << left << C.AccountNumber;
+        cout << "|" << left << setw(22) << left << C.FirstName + " " + C.LastName;
+        cout << "|" << left << setw(14) << left << C.Balance;
         cout << "|" << endl;
     }
 }
@@ -496,7 +510,10 @@ void DisplayTotalBalancesTable()
     cout << "-------------------------------------------------------\n";
     cout << "|Account Number |Full Name             |Balance       |\n";
     cout << "-------------------------------------------------------\n";
-    DisplayBalncesTabel(FillVectorWithClients());
+    DisplayBalncesTabel(FillVectorWithClientsFromTxtFile());
+    cout << "-------------------------------------------------------\n";
+    cout << "|" << setw(38) << left << "Total Balances";
+    cout << "|" << setw(14) << left << CalculateTotalBalances() << "|\n";
     cout << "-------------------------------------------------------\n";
 }
 
@@ -531,9 +548,7 @@ void PerformTransaction(enTransaction Option)
     case enTransaction::MainMenu:
     {
         system("cls");
-        SelectOperationFromMainMenu();
-        system("pause");
-        break;
+        return;
     }
     default:
     {
@@ -547,6 +562,7 @@ void DisplayTransactions()
     short YourChoice;
     do
     {
+        system("cls");
         cout << "---------------------------------------------\n";
         cout << "\t\tTransactions\n";
         cout << "---------------------------------------------\n";
@@ -657,7 +673,7 @@ void SelectOperationFromMainMenu()
         cout << "---------------------------------------------\n";
         YourSelection = ReadOption();
         ApplyOperation((enOperation)YourSelection);
-    } while (YourSelection != 6);
+    } while (YourSelection != 7);
 }
 
 int main()

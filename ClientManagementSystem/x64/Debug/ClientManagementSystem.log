@@ -1,4 +1,4 @@
 ﻿  ClientManagementSystem.cpp
-C:\Users\MCC\OneDrive\Desktop\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem.cpp(171,34): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
-C:\Users\MCC\OneDrive\Desktop\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem.cpp(43,1): warning C4715: 'CheckIfFileIsEmpty': not all control paths return a value
-  ClientManagementSystem.vcxproj -> C:\Users\MCC\OneDrive\Desktop\ClientManagementSystem\ClientManagementSystem\x64\Debug\ClientManagementSystem.exe
+C:\Users\MCC\OneDrive\Desktop\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem.cpp(173,34): warning C4267: '=': conversion from 'size_t' to 'short', possible loss of data
+C:\Users\MCC\OneDrive\Desktop\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem.cpp(461,9): error C3861: 'WithdrawAmount': identifier not found
+C:\Users\MCC\OneDrive\Desktop\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem\ClientManagementSystem.cpp(468,9): error C3861: 'DisplayTotalBalancesTable': identifier not found

@@ -405,6 +405,78 @@ void DisplayExitScreen()
     cout << "-------------------------------------\n";
 }
 
+void DepositAmount()
+{
+    vector <stClientInfo> vClient = FillVectorWithClientsFromTxtFile();
+
+    string AccNo;
+    bool Found = false;
+    int Amount;
+
+    cout << "Enter Account Number: ";
+    cin >> AccNo;
+
+    for (stClientInfo& C : vClient)
+    {
+        if (AccNo == C.AccountNumber)
+        {
+            Found = true;
+
+            do
+            {
+                cout << "Enter Amount: ";
+                cin >> Amount;
+            } while (Amount < 0);
+            C.Balance += Amount;
+
+            break;
+        }
+    }
+    if (Found == false)
+    {
+        cout << "This Account does not exist! :=>)\n";
+        return;
+    }
+
+    FillTxtFileWithClients(vClient);
+}
+
+void WithdrawAmount()
+{
+    vector <stClientInfo> vClient = FillVectorWithClientsFromTxtFile();
+
+    string AccNo;
+    bool Found = false;
+    int Amount;
+
+    cout << "Enter Account Number: ";
+    cin >> AccNo;
+
+    for (stClientInfo& C : vClient)
+    {
+        if (AccNo == C.AccountNumber)
+        {
+            Found = true;
+
+            do
+            {
+                cout << "Enter Amount: ";
+                cin >> Amount;
+            } while (Amount < 0 || Amount > C.Balance);
+            C.Balance -= Amount;
+
+            break;
+        }
+    }
+    if (Found == false)
+    {
+        cout << "This Account does not exist! :=>)\n";
+        return;
+    }
+
+    FillTxtFileWithClients(vClient);
+}
+
 short ReadOption();
 void SelectOperationFromMainMenu();
 
@@ -455,7 +527,7 @@ void DisplayTransactions()
         cout << "---------------------------------------------\n";
         cout << "\t\tTransactions\n";
         cout << "---------------------------------------------\n";
-        cout << "[1] Diposit.\n";
+        cout << "[1] Deposit.\n";
         cout << "[2] Withdraw.\n";
         cout << "[3] Total Balances.\n";
         cout << "[4] Main Menu.\n";

@@ -19,7 +19,7 @@ struct stClientInfo
     bool MarkForDelete = false;
 };
 
-enum enOperation { ShowClients = 1, AddNewClient = 2, DeleteClient = 3, Exit = 6};
+enum enOperation { ShowClients = 1, AddNewClient = 2, DeleteClient = 3, UpdateClient = 4, Exit = 6};
 
 bool CheckIfFileIsEmpty()
 {
@@ -308,6 +308,57 @@ void RemoveClient()
     FillTxtFileWithClients(vMClient);
 }
 
+void ModifyClient()
+{
+    vector <stClientInfo> vClient = FillVectorWithClientsFromTxtFile();
+
+    string AccNo;
+    bool Found = false;
+
+    cout << "Enter Account Number: ";
+    cin >> AccNo;
+
+    for (stClientInfo& C : vClient)
+    {
+        if (AccNo == C.AccountNumber)
+        {
+            Found = true;
+
+            cout << "Account Number: " << C.AccountNumber << endl;
+
+            cout << "First Name: ";
+            cin >> C.FirstName;
+
+            cout << "Last Name: ";
+            cin >> C.LastName;
+
+            cout << "Phone: ";
+            cin >> C.Phone;
+
+            cout << "Email: ";
+            cin >> C.Email;
+
+            cout << "Address: ";
+            cin >> C.Address;
+
+            cout << "Country: ";
+            cin >> C.Country;
+
+            cout << "Balance: ";
+            cin >> C.Balance;
+
+            break;
+        }
+    }
+    if (Found == false)
+    {
+        cout << "This Account does not exist! :=>)\n";
+        return;
+    }
+
+    FillTxtFileWithClients(vClient);
+}
+
 void ApplyOperation(enOperation Op)
 {
     switch (Op)
@@ -330,6 +381,13 @@ void ApplyOperation(enOperation Op)
     {
         system("cls");
         RemoveClient();
+        system("pause");
+        break;
+    }
+    case enOperation::UpdateClient:
+    {
+        system("cls");
+        ModifyClient();
         system("pause");
         break;
     }
@@ -370,6 +428,7 @@ void SelectOperationFromMainMenu()
         cout << "[1] Display Clients Table.\n";
         cout << "[2] Add New Client.\n";
         cout << "[3] Delete Client.\n";
+        cout << "[4] Update Client.\n";
         cout << "---------------------------------------------\n";
         YourSelection = ReadOption();
         ApplyOperation((enOperation)YourSelection);

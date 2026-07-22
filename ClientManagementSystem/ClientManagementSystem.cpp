@@ -21,7 +21,7 @@ struct stClientInfo
 
 enum enOperation { ShowClients = 1, AddNewClient = 2, DeleteClient = 3, UpdateClient = 4, FindClient = 5, Transaction = 6, Exit = 7};
 
-enum enTransaction { Deposit = 1, Withdrow = 2, TotalBalances = 3, MainMenu = 4 };
+enum enTransaction { Deposit = 1, Withdraw = 2, TotalBalances = 3, MainMenu = 4 };
 
 bool CheckIfFileIsEmpty()
 {
@@ -406,6 +406,46 @@ void DisplayExitScreen()
 }
 
 short ReadOption();
+void SelectOperationFromMainMenu();
+
+void PerformTransaction(enTransaction Option)
+{
+    switch (Option)
+    {
+    case enTransaction::Deposit:
+    {
+        system("cls");
+        DepositAmount();
+        system("pause");
+        break;
+    }
+    case enTransaction::Withdraw:
+    {
+        system("cls");
+        WithdrawAmount();
+        system("pause");
+        break;
+    }
+    case enTransaction::TotalBalances:
+    {
+        system("cls");
+        DisplayTotalBalancesTable();
+        system("pause");
+        break;
+    }
+    case enTransaction::MainMenu:
+    {
+        system("cls");
+        SelectOperationFromMainMenu();
+        system("pause");
+        break;
+    }
+    default:
+    {
+        cout << "Select a valid option :-)\n";
+    }
+    }
+}
 
 void DisplayTransactions()
 {
@@ -416,7 +456,7 @@ void DisplayTransactions()
         cout << "\t\tTransactions\n";
         cout << "---------------------------------------------\n";
         cout << "[1] Diposit.\n";
-        cout << "[2] Withdrow.\n";
+        cout << "[2] Withdraw.\n";
         cout << "[3] Total Balances.\n";
         cout << "[4] Main Menu.\n";
         cout << "---------------------------------------------\n";
